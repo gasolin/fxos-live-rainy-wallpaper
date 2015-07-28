@@ -12,6 +12,21 @@
 <body>
   <img id="element" src="test.jpg">
   <div id="rainy"></div>
+  Size:
+  <select id="rain-size">
+    <option value="large">Large</option>
+    <option selected value="medium">Medium</option>
+    <option value="small">Small</option>
+  </select>
+  <br/> Gravity:
+  <select id="gravity">
+    <option value="1.5">1.5 (right to left)</option>
+    <option value="1">1</option>
+    <option selected value="0.5">0.5</option>
+    <option value="0">0</option>
+    <option value="-0.5">-0.5</option>
+    <option value="-1">-1 (left to right)</option>
+  </select>
   <script>
   window.onload = function() {
     var engine = new RainyDay({
@@ -24,14 +39,48 @@
                               // Use 0 value to disable the blur
       opacity: 1,              // Opacity of rain drops
                               // Assuming 1 if not provided
-      gravityAngle: 3 * Math.PI
+      gravityAngle: 0.5 * Math.PI
     });
-    engine.rain(
-        [
-            [1, 0, 100],         // add 20 drops of size 1...
-            [6, 3, 1]           // ... and 1 drop of size from 3 - 6 ...
-        ],
-        33);
+
+    function clearDrops() {
+      engine.drops.forEach(function(drop) {
+        drop.clear(true);
+      });
+      engine.drops = [];
+    }
+
+    function rain(size) {
+      clearDrops();
+      switch(size) {
+        case 'large':
+          engine.rain([[6, 3, 1]], 100);
+          break;
+        case 'medium':
+          engine.rain([[3, 3, 1]], 100);
+          break;
+        case 'small':
+          engine.rain([[1, 0, 100]], 100);
+          break;
+      }
+    }
+
+    function changeGravity(v) {
+      if (isNaN(v)) {
+        return;
+      }
+      engine.options.gravityAngle = v * Math.PI;
+      rain(document.getElementById('rain-size').value);
+    }
+
+    rain('medium');
+
+    document.getElementById('rain-size').addEventListener('change', (e) => {
+      rain(e.target.value);
+    });
+
+    document.getElementById('gravity').addEventListener('change', (e) => {
+      changeGravity(parseFloat(e.target.value));
+    });
   };
   </script>
 </body>
