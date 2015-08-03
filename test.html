@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
   <meta charset="utf-8">
 
-  <script defer src="js/rainyday.min.js" type="text/javascript"></script>
+  <script defer src="js/rainyday.js" type="text/javascript"></script>
 </head>
 <body>
   <img id="element" src="test.jpg">
@@ -42,15 +42,9 @@
       gravityAngle: 0.5 * Math.PI
     });
 
-    function clearDrops() {
-      engine.drops.forEach(function(drop) {
-        drop.clear(true);
-      });
-      engine.drops = [];
-    }
-
     function rain(size) {
-      clearDrops();
+      engine.clearAllDrops();
+      engine.reset();
       switch(size) {
         case 'large':
           engine.rain([[6, 3, 1]], 100);
