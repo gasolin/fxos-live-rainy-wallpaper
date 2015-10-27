@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Live rainy wallpaper",
+  "description": "A rainy effect on top of your wallpaper. https://github.com/gasolin/fxos-live-rainy-wallpaper.git",
+  "version": "1.0",
+  "author": "John Hu & gasolin",
+  "package_path": "application.zip",
+  "content_scripts": [{
+    "matches": "app://system.gaiamobile.org/index.html",
+    "css": [],
+    "js": ["js/main.js"]
+  }],
+  "icons": {
+    "128": "icons/icon.png"
+  }
+}
