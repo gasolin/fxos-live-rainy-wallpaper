@@ -1,11 +1,10 @@
 {
-  "name": "Live rainy wallpaper",
+  "name": "Live Rainy Wallpaper",
   "description": "A rainy effect on top of your wallpaper. https://github.com/gasolin/fxos-live-rainy-wallpaper.git",
-  "version": "1.0",
   "developer": {
     "name": "John Hu & gasolin"
   },
-  "package_path": "application.zip",
+  "package_path": "package.zip",
   "icons": {
     "128": "icons/icon.png
   }
